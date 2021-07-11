@@ -1,0 +1,82 @@
+/* section */
+.job-board{
+	margin-bottom: 28px;
+}
+
+.board-table {
+  float: none;
+  margin: 0 auto;
+}
+
+.titleBox {
+  width: 250px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border-top: 1px solid #d2d2d2;
+  border-bottom: 1px solid #d2d2d2;
+  margin: 70px auto;
+}
+
+.board-table hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid #d2d2d2;
+}
+
+.search-wrap {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.search-btn,
+.search-input,
+.search-select {
+  float: right;
+}
+
+.search-input {
+  width: 140px;
+}
+
+.search-select {
+  width: 80px;
+}
+
+.table-board {
+  width: 100%;
+}
+
+.table-board th {
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  border-top: 1px solid #d2d2d2;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.table-board td {
+  padding: 10px 5px;
+  border-bottom: 1px solid #d2d2d2;
+  border-collapse: collapse;
+}
+
+.table-board > tbody > tr > td > a {
+  text-decoration: none;
+}
+
+.table-board > tbody > tr > td > a,
+.table-board > tbody > tr > td > a:hover {
+  color: black;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.jobBoard-page {
+  margin: 0 !important;
+}
+
+.write-btn {
+  float: right;
+}

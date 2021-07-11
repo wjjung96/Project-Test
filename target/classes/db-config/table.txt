@@ -1,0 +1,7 @@
+--DCL문 (Database Control Language)
+--계정생성,암호설정
+create user teamproject04 identified by hirehigher;
+--권한부여(롤)
+grant resource, connect to teamproject04;
+--테이블 스페이스 지정
+alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;

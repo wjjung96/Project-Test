@@ -1,0 +1,19 @@
+/* section */
+
+.loginTitle > h2 {
+  text-align: center;
+  margin: 20px auto;
+  height: 100px;
+  line-height: 100px;
+}
+
+.login-form {
+  width: 485px;
+  margin: 0 auto;
+}
+
+.userLogin{
+	margin-bottom: 28px !important;
+    margin-top: 48px;
+    min-height: 495px;
+}

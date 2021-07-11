@@ -1,0 +1,33 @@
+/* section */
+
+.sellerTitle > h2 {
+  text-align: center;
+  margin: 20px auto;
+  height: 100px;
+  line-height: 100px;
+}
+
+.seller-form {
+  width: 485px;
+  margin: 0 auto;
+  float: none;
+}
+
+.plus-btn > button {
+  background-color: white;
+}
+
+.seller-form-inner {
+  position: relative !important;
+  display: table !important;
+}
+
+.seller-btn {
+  position: relative !important;
+}
+
+.creator-apply {
+    margin-bottom: 28px !important;
+    margin-top: 45px !important;
+    min-height: 498px !important;
+}

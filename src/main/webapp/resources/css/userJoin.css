@@ -1,0 +1,38 @@
+/* section */
+
+.userJoin{
+	margin-bottom: 28px !important; 
+}
+
+.joinForm {
+  width: 485px;
+  margin: 0 auto;
+  float: none;
+}
+
+.joinTitle > h2 {
+  text-align: center;
+  margin: 20px auto;
+  height: 100px;
+  line-height: 100px;
+}
+
+.joinForm-wrap {
+  margin-bottom: 15px !important;
+}
+
+.joinForm-inner {
+  position: relative !important;
+  display: table !important;
+  border-collapse: separate !important;
+}
+
+.joinForm-btn  {
+  position: relative !important;
+  font-size: 0 !important;
+  white-space: nowrap !important;
+}
+
+#addrBasic {
+  margin-top: 15px;
+}

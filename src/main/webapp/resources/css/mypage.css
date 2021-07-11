@@ -1,0 +1,131 @@
+.mypage{
+    padding-top: 40px;	
+/*     min-height: 1200px; */
+    background-color:#2d2d2d;
+    background-color: rgb(19, 18, 18);
+    color:white;
+}
+
+.mypage-container{
+    width:40%;
+    margin:0 auto;
+    
+}
+
+@media (max-width:767px){ 
+    .mypage-container{
+        width: 100%;
+    }
+}
+
+.mypage-title{
+    text-align: center;   
+    margin-bottom: 15px; 
+}
+
+.mypage-title > span{
+    font-size: large;
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+    padding:10px;
+    margin-top: 10px;
+    display: inline-block;
+    
+}
+
+.mypage-nav{
+    border-bottom: 0;
+    width:100%;
+}
+
+.mypage-nav li{
+    float:right;
+}
+
+.mypage-nav li a{
+    color: white;
+    margin:0px;
+}
+
+
+.mypage-nav > li.active > a, .mypage-nav > li.active > a:hover, .mypage-nav > li.active > a:focus {
+    color: black;
+    cursor: default;
+    background-color: #d2d2d2;
+    border: 1px solid #777;
+    /* border-bottom-color: transparent; */
+}
+
+.mypage-wrap{
+    /* border: 1px solid #d2d2d2;   */
+    min-height: 650px;
+    
+}
+
+
+
+.mypage-input{
+    padding: 0;
+}
+
+
+.mypage-input:focus{
+    border-color: #777;
+    box-shadow: none;
+}
+
+
+.mypage-table > thead > tr > th, .mypage-table > tbody > tr > th, .mypage-table > tfoot > tr > th, .mypage-table > thead > tr > td, .mypage-table > tbody > tr > td, .mypage-table > tfoot > tr > td {
+    padding: 5px 0px !important;
+    line-height: 1.42857143 !important;
+    vertical-align: top !important;
+    border-top: 0 !important;
+}
+
+.mypage-modify-ph, .mypage-modify-zipcode{
+    width: 79%;
+    float: left;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.mypage-modify-Btn{
+    float: left;
+    border-radius: 0px 4px 4px 0px;
+    width: 21%;
+}
+
+.mypage-content{
+    background-color: #1c1c1c;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-top: 1px solid #fff;
+    text-align: left;
+    box-sizing: border-box;    
+}
+
+
+.mypage-content-body tr{
+    border-top: 1px solid #fff;
+}
+
+.mypage-content-body tr td{
+    color:#fff;
+}
+
+.mypage-content-body tr td a{
+    color:#fff;
+}
+
+.mypage-content-page li a{
+    background-color: #1c1c1c;
+    color: #ddd;
+    
+}
+
+.mypage-content-page{
+	margin:10px 0px;
+}
+
+.mypage-content-wrap > tbody > tr > td{
+    padding: 9px 0px;
+}

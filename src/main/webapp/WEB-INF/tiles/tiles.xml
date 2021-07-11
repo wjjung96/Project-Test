@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd"> <!-- 타일즈xml설정 -->
+  
+	<tiles-definitions>
+	
+	<definition name="templateMain" template="/WEB-INF/tiles/templateMain.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/tiles/mainFooter.jsp"/>
+	</definition>
+	
+	<definition name="main/*" extends="templateMain">
+		<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp"/>
+	</definition>
+	 
+	
+	<!-- 1. 타일즈 파일 레이아웃형식 정의 -->
+	<!-- name속성 = 컨트롤러의 리턴위치(상속받아서 사용할 이름), template속성 = 보여질 파일의 위치(타일즈템플릿의 경로) -->
+	<!-- 공통화면에 대한 정의 맵핑 -->
+	<definition name="templateBasic" template="/WEB-INF/tiles/templateBasic.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/tiles/side.jsp"/>
+		<put-attribute name="body" value=""/> 
+		<!-- 바디영역은 고정페이지가 아니기때문에 공백으로 지정하고 아래에서 이 템플릿을 상속받아 여러파일이름유형을 받아줄 수 있도록 처리합니다.  -->
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+	<definition name="*/*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	<definition name="*/*/*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
+	</definition>
+	
+	<!-- 공통화면과 별도로 지정할 레이아웃형식이 있는경우 참고(공통화면 정의보다 위에 위치해야 함)
+	<definition name="templateAAA" template="/WEB-INF/tiles/templateAAA.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+	<definition name="user/*" extends="templateAAA">
+		<put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"/>
+	</definition>
+	 -->
+	
+	<!-- 특정 요청시 바로 화면으로 보내줄경우 참고
+	<definition name="zzz" template="/WEB-INF/views/test/zzz.jsp"/>
+	<definition name="kkk" template="/WEB-INF/views/test/kkk.jsp"/>
+	<definition name="test01" template="/WEB-INF/views/test/test01.jsp"/>
+	 -->
+
+</tiles-definitions>
