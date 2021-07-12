@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- mapper.xml설정코드 -->
+
+<mapper namespace="com.hirehigher.user.mapper.UserMapper">
+	
+	<!-- vo로 넘어온 값은 #{변수명}으로 사용가능하다, !주의 sql문 마지막에 ;는 찍지않는다. -->
+	
+	<select id="login" resultType="UserVO"> 
+	<!-- resultType에는 전체경로가 들어가지만 DB-context에서 sqlSessionFactory빈에 configLocation속성으로 mybatis-config.xml을 지정해 주었고,
+	  mybatis-config.xml에서는 UserVO를 엘리어스로 지정해주었기 때문에 그냥 쓰는게 가능해짐-->
+		select * from users where userId = #{userId} and userPw = #{userPw}
+	</select>
+</mapper>
