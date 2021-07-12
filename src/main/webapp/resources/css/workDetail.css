@@ -1,0 +1,285 @@
+/* 버튼과 input태그의 윤곽변경 */
+/* .btn {border-radius: 0px;}
+.form-control {border-radius: 0px; }
+.form-control:focus {border: 1px solid #333;} */
+/* section {margin-top: 52px;} */
+
+.product_page, .comment_page{
+	background-color: #121212;
+    padding-top: 28px;
+    padding-bottom: 20px;
+}
+
+.detail-item > .title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.detail-item > .price {
+    font-size: 20px;
+    font-weight: bold;
+
+    padding: 10px 0;
+}
+.detail-item > .description {
+    color: #888;
+    border-top: #d2d2d2;
+    border-bottom: #d2d2d2;
+    border-radius: 10px;
+}
+
+.detail-btn > .price,
+.detail-btn > .order {
+    overflow: hidden;
+}
+.detail-btn > .price {
+    line-height: 42px;
+}
+
+.detail-btn > .price > .left {
+    float: left;
+    margin: 0;
+}
+.detail-btn > .price > .right {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.detail-btn > .order > button {
+    float: left;
+    width: 50%;
+    font-size: 20px;
+    padding: 10px 15px;
+}
+.detail-item {/* 버튼영역과의 거리 */
+    min-height: 350px;
+    margin-bottom: 18px;
+}
+
+/* =====댓글영역==== */
+.reply-wrap {
+    color: white;
+    border : 1px solid #d2d2d2;
+    background-color: #121212;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+}
+
+.reply-wrap > .reply-img {
+    position: absolute;
+    top:20px;
+    left:20px;
+}
+.reply-wrap > .reply-content {
+    padding-left: 60px;
+}
+
+.reply-content > .form-control {
+    color: white;
+    background-color: #121212;
+    resize: vertical;/* 세로축 */
+    margin-bottom: 10px;
+}
+.reply-group .form-control {
+    color: white;
+    background-color: #121212;
+    width:150px;
+}
+
+.reply-group {overflow: hidden;}
+.reply-group > .left {
+    float: left;
+}
+.reply-group > .right {
+    float: right;
+}
+
+.reply-group input[type="text"] {
+    margin-bottom: 10px;
+}
+
+/* textarea트랜지션 */
+.reply-content textarea {
+    height: 80px;
+    transition: all 0.3s ease-in-out;
+}
+.reply-content textarea:focus {
+    height: 150px;
+}
+
+/* =====답글영역===== */
+.reply-content strong,
+.reply-content small {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+}
+.reply-content a {
+    float: right;
+    text-decoration: none;
+    color: #d2d2d2;
+}
+.reply-content p {
+    margin: 0;
+}
+
+/* body {background-color: #121212;} */
+
+.star-input>.input,
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label {
+    display: inline-block;
+    vertical-align: middle;
+    background: url('img/grade_img.png')no-repeat;
+}
+
+.star-input {
+    display: inline-block;
+    white-space: nowrap;
+    width: 225px;
+    height: 40px;
+    padding: 25px;
+    line-height: 30px;
+}
+
+.star-input>.input {
+    display: inline-block;
+    width: 150px;
+    background-size: 150px;
+    height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.star-input>.input>input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+star-input>.input.focus {
+    outline: 1px dotted #ddd;
+}
+
+.star-input>.input>label {
+    width: 30px;
+    height: 0;
+    padding: 28px 0 0 0;
+    overflow: hidden;
+    float: left;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label {
+    background-size: 150px;
+    background-position: 0 bottom;
+}
+
+.star-input>.input>label:hover~label {
+    background-image: none;
+}
+
+.star-input>.input>label[for="p1"] {
+    width: 30px;
+    z-index: 5;
+}
+
+.star-input>.input>label[for="p2"] {
+    width: 60px;
+    z-index: 4;
+}
+
+.star-input>.input>label[for="p3"] {
+    width: 90px;
+    z-index: 3;
+}
+
+.star-input>.input>label[for="p4"] {
+    width: 120px;
+    z-index: 2;
+}
+
+.star-input>.input>label[for="p5"] {
+    width: 150px;
+    z-index: 1;
+}
+
+.star-input>output {
+    display: inline-block;
+    width: 60px;
+    font-size: 18px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+
+.description::-webkit-scrollbar {
+    width: 10px;
+}
+
+.description::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+.description::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+/* 이미지 체크박스 */
+.menu input[type=checkbox]{
+display: none;
+}
+.menu input[type=checkbox]+label{
+color: white;
+padding-left: 25px;
+padding-top: 50px;
+background-image: url('./img/free-icon-export-2089736.png');
+background-repeat: no-repeat;
+}
+.menu input[type=checkbox]+label>span{
+font-weight: bold;
+}
+.menu input[type=checkbox]:checked+label{
+background-image: url('./img/arrow-close.png');
+}
+/* 메뉴 목록*/
+.menu .menuitems{
+display: none;
+}
+.menu .menuitems{
+list-style: none;
+}
+.menu .menuitems li{
+padding: 5px;
+}
+.menu .menuitems li a{
+text-decoration: none;
+}
+/* 메뉴 펼침 - 체크박스 체크되면 메뉴목록 표시 */
+.menu input[type=checkbox]:checked~.menuitems{
+display: block;
+}
+
+
+
+
+
+
+
+
+

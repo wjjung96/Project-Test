@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CheckController {
 	
-	@RequestMapping("/createBoard/createBoard")
+	@RequestMapping("/workBoard/workBoard")
 	public String createBoard() {
 		
-		return "createBoard/createBoard";
+		return "workBoard/workBoard";
 	}
 	
 	@RequestMapping("/creator/creatorDetail")
@@ -64,6 +64,18 @@ public class CheckController {
 	public String jobDetail() {
 		
 		return "jobBoard/jobDetail";
+	}
+	
+	@RequestMapping("/workBoard/workDetail")
+	public String workDetail() {
+		
+		return "workBoard/workDetail";
+	}
+	
+	@RequestMapping("/workBoard/workModify")
+	public String workModify() {
+		
+		return "workBoard/workModify";
 	}
 	
 	

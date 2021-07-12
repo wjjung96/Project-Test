@@ -1,7 +1,7 @@
---DCL¹® (Database Control Language)
---°èÁ¤»ı¼º,¾ÏÈ£¼³Á¤
+--DCLë¬¸ (Database Control Language)
+--ì‚¬ìš©ì ê³„ì • ìƒì„±
 create user teamproject04 identified by hirehigher;
---±ÇÇÑºÎ¿©(·Ñ)
+--ì‚¬ìš©ì ê³„ì •ì— ê¶Œí•œë¶€ì—¬ (grant ê¶Œí•œ to ê³„ì •)
 grant resource, connect to teamproject04;
---Å×ÀÌºí ½ºÆäÀÌ½º ÁöÁ¤
+--ê¸°ì¡´ì— ìˆëŠ” í…Œì´ë¸” ìŠ¤í˜ì´ìŠ¤ë¥¼ ì§€ì •
 alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
