@@ -30,7 +30,7 @@ public class LoginSuccessHandler extends HandlerInterceptorAdapter{
 		}
 		
 		//ModelAndView객체에 이동할 view정보를 저장, 이정보는 다시 컨트롤러로 이동
-		modelAndView.setViewName("user/userLogin");
+//		modelAndView.setViewName("user/userLogin");
 		
 	}
 	

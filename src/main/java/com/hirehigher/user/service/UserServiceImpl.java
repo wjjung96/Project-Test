@@ -20,4 +20,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.login(vo);
 	}
 
+
+	@Override
+	public int idCheck(String userId) {
+		
+		return userMapper.idCheck(userId);
+	}
+
 }

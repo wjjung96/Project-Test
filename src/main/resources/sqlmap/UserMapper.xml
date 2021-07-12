@@ -12,4 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  mybatis-config.xml에서는 UserVO를 엘리어스로 지정해주었기 때문에 그냥 쓰는게 가능해짐-->
 		select * from users where userId = #{userId} and userPw = #{userPw}
 	</select>
+	
+	<select id="idCheck" resultType="int">
+		select count(*) from users where userId = #{userId}
+	</select>
 </mapper>
