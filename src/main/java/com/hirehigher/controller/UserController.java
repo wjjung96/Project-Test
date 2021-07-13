@@ -41,7 +41,7 @@ public class UserController {
 			mv.addObject("login", userVO);
 		}else { //로그인 실패
 			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
-			mv.setViewName("user/userLogin");
+			
 		}
 		
 		return mv; //LoginSuccessHandler로 반환

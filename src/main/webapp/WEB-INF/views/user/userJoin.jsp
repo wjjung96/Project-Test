@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+	
+	<style>
+		#userPw.aaa:focus{
+			border: 1px solid red;
+		}
+		#userPw.bbb:focus{
+			border: 1px solid #66afe9;
+		}
+	</style>
+	
     <section>
 
     <div class="container">
@@ -55,7 +64,7 @@
               <div class="input-group">
                 <input type="text" class="joinForm-inner form-control" name="userCellNum" id="userCellNum" placeholder="-없이 입력해주세요">
                 <div class="joinForm-btn input-group-btn">
-                  <button type="button" id="idCheck" class="btn btn-info">본인확인</button>
+                  <button type="button" id="" class="btn btn-info">본인확인</button>
                 </div>
               </div>
               
@@ -65,7 +74,7 @@
               <div class="input-group">
                 <input type="text" class="joinForm-inner form-control" id="addrZipNum" name="addrZipNum" placeholder="우편번호" readonly>
                 <div class="joinForm-btn input-group-btn">
-                  <button type="button" id="idCheck" class="btn btn-info">우편번호찾기</button>
+                  <button type="button" id="findAddr" class="btn btn-info">우편번호찾기</button>
                 </div>
               </div>
               <div class="joinForm-wrap form-group">
@@ -97,13 +106,14 @@
   
 	<script>
   		
+		//아이디  중복체크
 		$("#idCheck").click(function(){
 		
 			var userId = $("#userId").val();
 			
 			if(userId == '' || userId.length < 6 || userId.length > 15){//아이디 형식검사
 				alert("아이디는 영문숫자 포함 6~15글자입니다.");
-				$("userId").focus();
+				$("#userId").focus();
 			}
 			
 			$.getJSON("idCheck/"+userId, function(data){ //$.getJSON(요청주소, 콜백함수) 데이터조회는 주로 get방식을 사용한다고함.
@@ -116,5 +126,57 @@
 			})
 			
 		})
+		
+		var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		
+		//비밀번호 형식검사
+		$("#userPw").keyup(function(){
+			
+			if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){
+				
+				if(! $("#userPw").hasClass("aaa") ){
+					$("#userPw").addClass("aaa");
+				}
+				if( $("#userPw").hasClass("bbb") ){
+					$("#userPw").removeClass("bbb");
+				}
+				
+				$("#msgPw").html("비밀번호는 8~16자로 입력하셔야 합니다.");
+				
+			}else if( $("#userPw").val().length != 0 && !pwRegex.test( $("#userPw").val() )){
+				
+				if(! $("#userPw").hasClass("aaa") ){
+					$("#userPw").addClass("aaa");
+				}if( $("#userPw").hasClass("bbb") ){
+					$("#userPw").removeClass("bbb");
+				}
+				
+				$("#msgPw").html("비밀번호는 영문,숫자,특수문자를 반드시 포함해야합니다.");
+				
+			}else if($("#userPw").val().length == 0){
+				
+				if( $("#userPw").hasClass("aaa") ){
+					$("#userPw").removeClass("aaa");
+				}
+				if(!$("#userPw").hasClass("bbb") ){
+					$("#userPw").addClass("bbb");
+				}
+				
+				$("#msgPw").html("");
+				
+			}else{
+				
+				if( $("#userPw").hasClass("aaa") ){
+					$("#userPw").removeClass("aaa");
+				}
+				if( !$("#userPw").hasClass("bbb") ){
+					$("#userPw").addClass("bbb");
+				}
+				$("#msgPw").html("사용가능한 비밀번호 입니다.");
+			}
+			
+		})
+		
+		
 		
 	</script>

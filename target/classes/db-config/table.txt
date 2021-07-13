@@ -15,7 +15,7 @@ create table users(
     nickName varchar2(50) unique,
     birthDay varchar2(10),
     userEmail varchar2(50),
-    userCellNum varchar2(10),
+    userCellNum varchar2(15),
     addrZipNum varchar2(50),
     addrBasic varchar2(300),
     addrDetail varchar2(300),
