@@ -6,6 +6,6 @@
   <!-- 마이바티스 설정파일 type에 명시된 클래스 이름을 함축시킵니다. -->
 	<configuration>
 		<typeAliases>
-			<!--예시: <typeAlias type="com.hirehigher.command.UserVO" alias="UserVO"/> --> 
+			<typeAlias type="com.hirehigher.command.UserVO" alias="UserVO"/>
 		</typeAliases>
 	</configuration>
