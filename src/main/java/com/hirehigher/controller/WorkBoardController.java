@@ -24,9 +24,9 @@ public class WorkBoardController {
 		return "workBoard/workDetail";
 	}
 	
-	@RequestMapping("/workModify")
-	public String workModify() {
-		return"workBoard/workModify";
-	}
+//	@RequestMapping("/workModify")
+//	public String workModify() {
+//		return"workBoard/workModify";
+//	}
 	
 }
