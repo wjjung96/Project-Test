@@ -5,3 +5,20 @@ create user teamproject04 identified by hirehigher;
 grant resource, connect to teamproject04;
 --기존에 있는 테이블 스페이스를 지정
 alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
+
+
+========================================= 유  저 테 이 블 =============================================
+create table users(
+    userId varchar2(50) primary key,
+    userPw varchar2(50) not null,
+    userName varchar2(50) not null,
+    nickName varchar2(50) unique,
+    birthDay varchar2(10),
+    userEmail varchar2(50),
+    userCellNum varchar2(15),
+    addrZipNum varchar2(50),
+    addrBasic varchar2(300),
+    addrDetail varchar2(300),
+    regdate date default sysdate,
+    userType number(1) default 0
+); 
