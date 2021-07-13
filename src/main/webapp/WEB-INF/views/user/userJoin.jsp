@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 	
 	<style>
-		#userPw.aaa:focus{
+		#userPw.aaa:focus, #pwCheck.aaa:focus, #birthDay.aaa:focus{
 			border: 1px solid red;
 		}
-		#userPw.bbb:focus{
+		#userPw.bbb:focus, #pwCheck.bbb:focus, #birthDay.bbb:focus{
 			border: 1px solid #66afe9;
 		}
 	</style>
@@ -33,32 +33,52 @@
               </div>
               <span id="msgId"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="password">비밀번호</label>  
               <input type="password" class="joinForm-inner form-control" name="userPw" id="userPw" placeholder="영문 숫자 기호 포함 8~16자"> 
               <span id="msgPw"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="passwordCheck">비밀번호확인</label>
               <input type="password" class="joinForm-inner form-control" id="pwCheck">
+              <span id="msgPwCheck"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="name">이름</label>
               <input type="text" class="joinForm-inner form-control" name="userName" id="userName">
             </div>
+            
             <div class="joinForm-wrap form-group">
-              <label for="nicName">닉네임</label>
-              <input type="text" class="joinForm-inner form-control" name="nickName" id="nickName">
+              <label for="userNickName">닉네임</label>
+              <div class="input-group">
+                <input type="text" class="joinForm-inner form-control" name="nickName" id="nickName" placeholder="">
+                <div class="joinForm-btn input-group-btn">
+                  <button type="button" id="nickNameCheck" class="btn btn-info">닉네임중복체크</button>
+                </div>
+              </div>
+              <span id="msgNickName"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="nicName">생년월일</label>
               <input type="text" class="joinForm-inner form-control" name="birthDay" id="birthDay" placeholder="ex:19950623">
+              <span id="msgBirthDay"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="email">이메일</label>
-              <input type="email" class="joinForm-inner form-control" name="userEmail" id="userEmail">
-              <span class="msgEmail"></span>
+              <div class="input-group">
+                <input type="text" class="joinForm-inner form-control" name="userEmail" id="userEmail" placeholder="">
+                <div class="joinForm-btn input-group-btn">
+                  <button type="button" id="userEmailCheck" class="btn btn-info">이메일인증</button>
+                </div>
+              </div>
+              <span id="msgUserEmail"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="phoneNum">전화번호</label>
               <div class="input-group">
@@ -66,9 +86,9 @@
                 <div class="joinForm-btn input-group-btn">
                   <button type="button" id="" class="btn btn-info">본인확인</button>
                 </div>
-              </div>
-              
+              </div>              
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="address">주소</label>
               <div class="input-group">
@@ -153,10 +173,89 @@
 	            }
 	            if(!$("#userPw").hasClass("bbb") ){
 	               $("#userPw").addClass("bbb");
-	            }   
+	            }
+	            $("#msgPw").html("");    
+	         }else{
+	        	if( $("#userPw").hasClass("aaa") ){
+		        	$("#userPw").removeClass("aaa");
+		        }
+		        if(!$("#userPw").hasClass("bbb") ){
+		        	$("#userPw").addClass("bbb");
+		        }
+		       
+		        $("#msgPw").html("사용가능한 비밀번호 입니다.");
+	         }
+		})
+		
+		//비밀번호 확인 검사
+		$("#pwCheck").keyup(function(){
+			
+			if( $("#userPw").val() != $("#pwCheck").val() ){
+				
+				if(! $("#pwCheck").hasClass("aaa") ){
+		        	$("#pwCheck").addClass("aaa");
+		        }if( $("#pwCheck").hasClass("bbb") ){
+		        	$("#pwCheck").removeClass("bbb");
+		        } 
+		        
+		        $("#msgPwCheck").html("확인 비밀번호가 일치하지 않습니다.");
+			}else{
+				if(! $("#pwCheck").hasClass("bbb") ){
+					$("#pwCheck").addClass("bbb");
+				}
+				if( $("#pwCheck").hasClass("aaa")){
+					$("#pwCheck").removeClass("aaa");
+				}
+				$("#msgPwCheck").html("확인 비밀번호가 일치합니다.");
+			}
 			
 		})
 		
+	  //닉네임중복체크
+      $("#nickNameCheck").click(function(){
+         
+         var nickName = $("#nickName").val();
+         
+         $.getJSON("nickNameCheck/"+nickName,function(data){
+            if(data == 1){//중복된  경우
+               $("#msgNickName").html("중복된 닉네임이 있습니다.");
+               $("#nickName").css("borderColor","red");
+            }else{ 
+               $("#msgNickName").html("사용가능한 닉네임입니다.");
+               $("#nickName").css("borderColor","#66afe9");
+               $("#nickName").attr("readonly",true);
+            }
+         })
+         
+      })
+      
+	//생년월일 형식검사
+	var birthDayRegex = /^(19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])$/;
+	$("#birthDay").keyup(function(){
 		
+		if( ! birthDayRegex.test( $("#birthDay").val() )){
+			
+			if( ! $("#birthDay").hasClass("aaa") ){
+				$("#birthDay").addClass("aaa");
+			}
+			
+			if( $("#birthDay").hasClass("bbb") ){
+				$("#birthDay").removeClass("bbb");
+			}
+			
+			$("#msgBirthDay").html("생년월일 입력 형식을 확인해주세요.");
+		}else{
+			if( !$("#birthDay").hasClass("bbb") ){
+				$("#birthDay").addClass("bbb");
+			}
+			if( $("#birthDay").hasClass("aaa") ){
+				$("#birthDay").removeClass("aaa");
+			}
+			$("#msgBirthDay").html("");
+		}
+	})
+	
+	
+
 		
 	</script>

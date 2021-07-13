@@ -60,10 +60,18 @@ public class UserController {
 		
 		int result = userService.idCheck(userId);
 		
-		System.out.println("result:"+result);
 		return result;
 	}
 	
+	//닉네임 중복확인(비동기요청)
+	@ResponseBody
+	@GetMapping("/nickNameCheck/{nickName}")
+	public int nickNameCheck(@PathVariable("nickName") String nickName) {
+		
+		int result = userService.nickNameCheck(nickName);
+		
+		return result;
+	}
 	
 	//마이페이지
 	@RequestMapping("/mypage")

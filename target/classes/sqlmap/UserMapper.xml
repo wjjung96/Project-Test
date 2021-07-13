@@ -16,4 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idCheck" resultType="int">
 		select count(*) from users where userId = #{userId}
 	</select>
+	
+	<select id="nickNameCheck" resultType="int">
+		select count(*) from users where nickName = #{nickName}
+	</select>
 </mapper>
