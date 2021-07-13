@@ -127,53 +127,33 @@
 			
 		})
 		
-		var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 		
 		//비밀번호 형식검사
-		$("#userPw").keyup(function(){
-			
-			if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){
-				
-				if(! $("#userPw").hasClass("aaa") ){
-					$("#userPw").addClass("aaa");
-				}
-				if( $("#userPw").hasClass("bbb") ){
-					$("#userPw").removeClass("bbb");
-				}
-				
-				$("#msgPw").html("비밀번호는 8~16자로 입력하셔야 합니다.");
-				
-			}else if( $("#userPw").val().length != 0 && !pwRegex.test( $("#userPw").val() )){
-				
-				if(! $("#userPw").hasClass("aaa") ){
-					$("#userPw").addClass("aaa");
-				}if( $("#userPw").hasClass("bbb") ){
-					$("#userPw").removeClass("bbb");
-				}
-				
-				$("#msgPw").html("비밀번호는 영문,숫자,특수문자를 반드시 포함해야합니다.");
-				
-			}else if($("#userPw").val().length == 0){
-				
-				if( $("#userPw").hasClass("aaa") ){
-					$("#userPw").removeClass("aaa");
-				}
-				if(!$("#userPw").hasClass("bbb") ){
-					$("#userPw").addClass("bbb");
-				}
-				
-				$("#msgPw").html("");
-				
-			}else{
-				
-				if( $("#userPw").hasClass("aaa") ){
-					$("#userPw").removeClass("aaa");
-				}
-				if( !$("#userPw").hasClass("bbb") ){
-					$("#userPw").addClass("bbb");
-				}
-				$("#msgPw").html("사용가능한 비밀번호 입니다.");
-			}
+	      var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+	      
+	      $("#userPw").keyup(function(){         
+	         if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){            
+	            if(! $("#userPw").hasClass("aaa") ){
+	               $("#userPw").addClass("aaa");
+	            }
+	            if( $("#userPw").hasClass("bbb") ){
+	               $("#userPw").removeClass("bbb");
+	            }            
+	            $("#msgPw").html("비밀번호는 8~16자로 입력하셔야 합니다.");            
+	         }else if( $("#userPw").val().length != 0 && !pwRegex.test( $("#userPw").val() )){            
+	            if(! $("#userPw").hasClass("aaa") ){
+	               $("#userPw").addClass("aaa");
+	            }if( $("#userPw").hasClass("bbb") ){
+	               $("#userPw").removeClass("bbb");
+	            }            
+	            $("#msgPw").html("비밀번호는 영문,숫자,특수문자를 반드시 포함해야합니다.");            
+	         }else if($("#userPw").val().length == 0){            
+	            if( $("#userPw").hasClass("aaa") ){
+	               $("#userPw").removeClass("aaa");
+	            }
+	            if(!$("#userPw").hasClass("bbb") ){
+	               $("#userPw").addClass("bbb");
+	            }   
 			
 		})
 		
