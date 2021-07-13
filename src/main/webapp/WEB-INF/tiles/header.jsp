@@ -21,6 +21,8 @@
 
 		<ul class="nav-links">
 			<!--[3-2]-->
+			<li><a href="${pageContext.request.contextPath }/jobBoard/jobList">RECRUITMENT <img src="${ pageContext.request.contextPath }/resources/img/recruitment-logo.png">
+            </a></li>
 			<li><a href="#">MARKET <img src="${ pageContext.request.contextPath }/resources/img/cart-logo.png">
 			</a></li>
 			<li><a href="#">SIGN-IN <img src="${ pageContext.request.contextPath }/resources/img/signin-logo.png">
