@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
 	
 	<style>
-		#userPw.aaa:focus, #pwCheck.aaa:focus, #birthDay.aaa:focus{
-			border: 1px solid red;
+		#userPw.aaa:focus, #birthDay.aaa:focus{
+			border-color:red;
 		}
-		#userPw.bbb:focus, #pwCheck.bbb:focus, #birthDay.bbb:focus{
-			border: 1px solid #66afe9;
+		#userPw.bbb:focus, #birthDay.bbb:focus{
+			border-color:#66afe9;			
+		}
+		
+		.bbb{
+			background-color:rgb(232, 240, 254);
 		}
 	</style>
 	
@@ -134,6 +138,7 @@
 			if(userId == '' || userId.length < 6 || userId.length > 15){//아이디 형식검사
 				alert("아이디는 영문숫자 포함 6~15글자입니다.");
 				$("#userId").focus();
+				return;
 			}
 			
 			$.getJSON("idCheck/"+userId, function(data){ //$.getJSON(요청주소, 콜백함수) 데이터조회는 주로 get방식을 사용한다고함.
@@ -148,11 +153,14 @@
 		})
 		
 		
-		//비밀번호 형식검사
-	      var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		 //비밀번호 형식검사
+	     var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 	      
 	      $("#userPw").keyup(function(){         
-	         if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){            
+	    	  
+	    	  pwCheck();
+	    	  
+	    	  if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){            
 	            if(! $("#userPw").hasClass("aaa") ){
 	               $("#userPw").addClass("aaa");
 	            }
@@ -187,29 +195,41 @@
 	         }
 		})
 		
-		//비밀번호 확인 검사
+		//비밀번호 확인 검사	
 		$("#pwCheck").keyup(function(){
-			
-			if( $("#userPw").val() != $("#pwCheck").val() ){
-				
-				if(! $("#pwCheck").hasClass("aaa") ){
-		        	$("#pwCheck").addClass("aaa");
-		        }if( $("#pwCheck").hasClass("bbb") ){
-		        	$("#pwCheck").removeClass("bbb");
-		        } 
-		        
-		        $("#msgPwCheck").html("확인 비밀번호가 일치하지 않습니다.");
-			}else{
-				if(! $("#pwCheck").hasClass("bbb") ){
-					$("#pwCheck").addClass("bbb");
-				}
-				if( $("#pwCheck").hasClass("aaa")){
-					$("#pwCheck").removeClass("aaa");
-				}
-				$("#msgPwCheck").html("확인 비밀번호가 일치합니다.");
-			}
-			
+			pwCheck();		
 		})
+		
+		//비밀번호 확인 검사
+		function pwCheck(){
+			if( $("#userPw").val() != $("#pwCheck").val()){
+					
+				$("#pwCheck").css("borderColor","red");
+				
+			 	$("#msgPwCheck").html("확인 비밀번호가 일치하지 않습니다.");
+			 	
+			 	if($("#pwCheck").hasClass("bbb")){
+			 		$("#pwCheck").removeClass("bbb");
+			 	}
+			 	
+			}else if($("#userPw").val().length == 0){
+				$("#msgPwCheck").html("");
+				$("#pwCheck").css("borderColor","#ccc");
+				
+				if($("#pwCheck").hasClass("bbb")){
+			 		$("#pwCheck").removeClass("bbb");
+			 	}
+				
+			}else{				
+				$("#pwCheck").css("borderColor","#ccc");	
+				$("#msgPwCheck").html("확인 비밀번호가 일치합니다.");
+			
+				if(! $("#pwCheck").hasClass("bbb")){
+			 		$("#pwCheck").addClass("bbb");
+			 	}
+			
+		}
+	}
 		
 	  //닉네임중복체크
       $("#nickNameCheck").click(function(){
@@ -255,6 +275,21 @@
 		}
 	})
 	
+	
+	//주소 팝업 
+	$("#findAddr").click(function(){
+		var pop = window.open("${pageContext.request.contextPath}/resources/pop/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	})
+	
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+		//기본주소
+		$("#addrBasic").val(roadAddrPart1);
+		//고객입력상세주소
+		$("#addrDetail").val(addrDetail);
+		//우편번호
+		$("#addrZipNum").val(zipNo);
+		
+} 
 	
 
 		
