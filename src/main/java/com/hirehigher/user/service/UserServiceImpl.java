@@ -34,4 +34,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.nickNameCheck(nickName);
 	}
 
+
+	@Override
+	public int emailCheck(String userEmail) {
+	
+		return userMapper.emailCheck(userEmail);
+	}
+
 }

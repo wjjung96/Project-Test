@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 	
 	<style>
-		#userPw.aaa:focus, #birthDay.aaa:focus{
+		#userPw.aaa:focus, #birthDay.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus{
 			border-color:red;
 		}
-		#userPw.bbb:focus, #birthDay.bbb:focus{
+		#userPw.bbb:focus, #birthDay.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus{
 			border-color:#66afe9;			
 		}
 		
@@ -80,9 +80,14 @@
                   <button type="button" id="userEmailCheck" class="btn btn-info">이메일인증</button>
                 </div>
               </div>
-              <span id="msgUserEmail"></span>
+              	<span id="msgUserEmail"></span>
+              	
+              <div class="emailAuthWrap" id="emailAuthWrap" style="display:none;">
+              	<input type="text" class="joinForm-inner form-control" name="emailAuth" id="emailAuth" placeholder="인증번호를 입력해주세요.">
+              	<span id="msgEmailAuth"></span>
+              </div>             
             </div>
-            
+      
             <div class="joinForm-wrap form-group">
               <label for="phoneNum">전화번호</label>
               <div class="input-group">
@@ -236,6 +241,12 @@
          
          var nickName = $("#nickName").val();
          
+         if(nickName.length == 0){
+        	alert("닉네임은 공백이 될 수 없습니다.");
+        	$("#nickName").focus();
+        	return;
+         }
+         
          $.getJSON("nickNameCheck/"+nickName,function(data){
             if(data == 1){//중복된  경우
                $("#msgNickName").html("중복된 닉네임이 있습니다.");
@@ -289,8 +300,104 @@
 		//우편번호
 		$("#addrZipNum").val(zipNo);
 		
-} 
+	}
 	
+	//이메일 형식검사
+	var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	$("#userEmail").keyup(function(){
+		if( ! emailRegex.test( $("#userEmail").val() )){			
+			if( ! $("#userEmail").hasClass("aaa") ){
+				$("#userEmail").addClass("aaa");
+			}		
+			if( $("#userEmail").hasClass("bbb") ){
+				$("#userEmail").removeClass("bbb");
+			}			
+			$("#msgUserEmail").html("이메일 입력 형식을 확인해주세요.");
+		}else{
+			if( !$("#userEmail").hasClass("bbb") ){
+				$("#userEmail").addClass("bbb");
+			}
+			if( $("#userEmail").hasClass("aaa") ){
+				$("#userEmail").removeClass("aaa");
+			}
+			$("#msgUserEmail").html("");
+		}
+	})
+	
+	//이메일 중복검사 및 인증		
+	$("#userEmailCheck").click(function(){//	
+		
+		if(! $("#userEmail").hasClass("bbb") ){ //bbb클래스를 가지고 있지 않다면 email형식이 올바르지 않다고 판단 메서드를 종료시킨다.
+			alert("이메일 형식을 확인해주세요");
+			return;
+		}
+		
+		var userEmail = $("#userEmail").val();
+	
+		$.ajax({
+			type: "post",
+			url: "emailCheck",
+			dataType: "json",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({"userEmail":userEmail}),
+			success: function(data){
+				if(data == 1){//email중복
+					alert("이미 가입된 유저의 이메일입니다. ");
+					return;
+				}else{//Email중복이 아닐경우
+					alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+					$("#userEmail").attr("readonly",true);
+					$("#emailAuthWrap").css("display","block");
+					$("#emailAuthWrap").focus();
+					
+					//이메일발송
+					$.ajax({
+						type: "post",
+						url: "sendEmail",
+						dataType: "json",
+						contentType: "application/json",
+						data: JSON.stringify({"userEmail":userEmail}),
+						success: function(data){
+							
+							var keyCode = data.keyCode	
+							$("#emailAuth").keyup(function(){
+								if( $("#emailAuth").val() != keyCode){
+									if( !$("#emailAuth").hasClass("aaa") ){
+										$("#emailAuth").addClass("aaa");
+									}
+									if( $("#emailAuth").hasClass("bbb") ){
+										$("#emailAuth").removeClass("bbb");
+									}
+									$("#msgEmailAuth").html("인증번호를 확인해주세요");
+								}else{
+									if( !$("#emailAuth").hasClass("bbb") ){
+										$("#emailAuth").addClass("bbb");
+									}									
+									if( $("#emailAuth").hasClass("aaa") ){
+										$("#emailAuth").removeClass("aaa");
+									}
+									$("#msgEmailAuth").html("인증번호가 일치합니다");
+								}
+							})
+						},
+						error: function(status,error){
+							console.log(status,error);							
+						}
+					})
+					
+				}
+			},
+			error: function(status,error){
+				console.log(status, error);
+			}
+		})
+			
+	  /*$.getJSON("emailCheck/"+userEmail, function(data){
+			console.log("data값:"+data);
+		})  왜안되는지 모르겠음*/	
+	
+	})//end 
 
 		
 	</script>
