@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.EmailAuthVO;
 import com.hirehigher.command.UserVO;
@@ -146,6 +147,21 @@ public class UserController {
 		}
         
 		return new EmailAuthVO(keyCode);
+	}
+	
+	//회원가입 처리
+	@RequestMapping(value="/joinForm", method=RequestMethod.POST)
+	public String joinForm(UserVO vo, RedirectAttributes RA){
+		
+		int result = userService.join(vo);
+		
+		if(result ==1) {
+			RA.addFlashAttribute("msg", "가입을 축하합니다");
+		}else {
+			RA.addFlashAttribute("msg", "회원가입에 실패했습니다. 관리자에게 문의하세요");
+		}
+		
+		return "redirect:/user/userLogin";
 	}
 	
 	//마이페이지

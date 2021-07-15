@@ -41,4 +41,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.emailCheck(userEmail);
 	}
 
+
+	@Override
+	public int join(UserVO vo) {
+		
+		return userMapper.join(vo);
+	}
+
 }

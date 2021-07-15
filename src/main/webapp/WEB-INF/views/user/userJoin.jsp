@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 	
 	<style>
-		#userPw.aaa:focus, #birthDay.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus{
+		#userPw.aaa:focus, #birthDay.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus, #userCellNum.aaa:focus{
 			border-color:red;
 		}
-		#userPw.bbb:focus, #birthDay.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus{
+		#userPw.bbb:focus, #birthDay.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus, #userCellNum.bbb:focus{
 			border-color:#66afe9;			
 		}
 		
@@ -25,7 +25,7 @@
           <div class="joinTitle">
             <h2>회원가입</h2>
           </div>
-          <form action="#" method="POST" name="#">
+          <form action="joinForm" method="POST" name="#" id="joinForm">
 
             <div class="joinForm-wrap form-group">
               <label for="id">아이디</label>
@@ -67,7 +67,7 @@
             </div>
             
             <div class="joinForm-wrap form-group">
-              <label for="nicName">생년월일</label>
+              <label for="userBirth">생년월일</label>
               <input type="text" class="joinForm-inner form-control" name="birthDay" id="birthDay" placeholder="ex:19950623">
               <span id="msgBirthDay"></span>
             </div>
@@ -89,13 +89,9 @@
             </div>
       
             <div class="joinForm-wrap form-group">
-              <label for="phoneNum">전화번호</label>
-              <div class="input-group">
-                <input type="text" class="joinForm-inner form-control" name="userCellNum" id="userCellNum" placeholder="-없이 입력해주세요">
-                <div class="joinForm-btn input-group-btn">
-                  <button type="button" id="" class="btn btn-info">본인확인</button>
-                </div>
-              </div>              
+              <label for="phoneNum">전화번호</label>             
+              <input type="text" class="joinForm-inner form-control" name="userCellNum" id="userCellNum" placeholder="-포함 번호를 입력해주세요">
+              <span id="msgUserCellNum"></span>
             </div>
             
             <div class="joinForm-wrap form-group">
@@ -115,7 +111,7 @@
             </div>
 
             <div class="joinForm-wrap form-group">
-              <button type="submit" class="btn btn-lg btn-info btn-block" id="joinBtn">회원가입</button>
+              <button type="button" class="btn btn-lg btn-info btn-block" id="joinBtn">회원가입</button>
             </div>
             
             <div class="joinForm-wrap form-group">
@@ -332,6 +328,10 @@
 			alert("이메일 형식을 확인해주세요");
 			return;
 		}
+	
+		if( $("#userEmail").hasClass("ccc") ){ //bbb클래스를 가지고 있다면 이미 이메일이 발송됐음으로 메서드 종료
+			return;
+		}
 		
 		var userEmail = $("#userEmail").val();
 	
@@ -359,6 +359,8 @@
 						contentType: "application/json",
 						data: JSON.stringify({"userEmail":userEmail}),
 						success: function(data){
+							
+							$("#userEmail").addClass("ccc");//메일이 발송되면 버튼을 비활성화 시켜줄 클래스
 							
 							var keyCode = data.keyCode	
 							$("#emailAuth").keyup(function(){
@@ -392,12 +394,77 @@
 				console.log(status, error);
 			}
 		})
-			
-	  /*$.getJSON("emailCheck/"+userEmail, function(data){
-			console.log("data값:"+data);
-		})  왜안되는지 모르겠음*/	
+	}) 
 	
-	})//end 
+	//전화번호 형식검증
+	var cellNumRegex = /^(01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})-[0-9]{3,4}-[0-9]{4}$/
 
+	$("#userCellNum").keyup(function(){
+		if( ! cellNumRegex.test( $("#userCellNum").val() ) ){
+			if( ! $("#userCellNum").hasClass("aaa") ){
+				$("#userCellNum").addClass("aaa");
+			}		
+			if( $("#userCellNum").hasClass("bbb") ){
+				$("#userCellNum").removeClass("bbb");
+			}			
+			$("#msgUserCellNum").html("전화번호 입력 형식을 확인해주세요.");
+		}else{
+			if( !$("#userCellNum").hasClass("bbb") ){
+				$("#userCellNum").addClass("bbb");
+			}
+			if( $("#userCellNum").hasClass("aaa") ){
+				$("#userCellNum").removeClass("aaa");
+			}
+			$("#msgUserCellNum").html("");
+		}
+	})
+	
+	//회원가입 버튼 클릭시 폼검증작업 및 서브밋
+	$("#joinBtn").click(function(){
+		
+		if($("#userId").attr("readonly") != 'readonly'){//중복검사를 하지 않은경우 
+			alert("아이디 중복검사는 필수입니다.");
+			$("#userId").focus();
+			return;
+		}else if(! $("#userPw").hasClass("bbb") ){
+			alert("비밀번호를 확인하세요.");
+			$("#userPw").focus();
+			return;
+		}else if(! $("#pwCheck").hasClass("bbb") ){
+			alert("비밀번호를 확인하세요.");
+			$("#pwCheck").focus();
+			return;
+		}else if( $("#userName").val() == '' ){
+			alert("이름은 필수입니다.");
+			$("#userName").focus();
+			return;
+		}else if($("#nickName").attr("readonly") != 'readonly'){
+			alert("닉네임 중복검사는 필수입니다.");
+			$("#nickName").focus();
+			return;
+		}else if(! $("#birthDay").hasClass("bbb") ){
+			alert("생년월일을 확인하세요.");
+			$("#birthDay").focus();
+			return;
+		}else if($("#userEmail").attr("readonly") != 'readonly'){
+			alert("이메일 중복검사는 필수입니다.");
+			$("#userEmail").focus();
+			return;
+		}else if(! $("#emailAuth").hasClass("bbb") ){
+			alert("이메일 인증번호를 확인하세요.");
+			$("#emailAuth").focus();
+			return;
+		}else if(! $("#userCellNum").hasClass("bbb") ){
+			alert("전화번호를 확인하세요.");
+			$("#userCellNum").focus();
+			return;
+		}else if( $("#addrZipNum").val() == '' || $("#addrBasic").val() == '' || $("#addrDetail").val() == ''){
+			alert("주소를 입력해주세요");
+			$("#addrBasic").focus();
+			return;
+		}else{
+			$("#joinForm").submit();
+		}
+	})
 		
 	</script>
