@@ -13,6 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users where userId = #{userId} and userPw = #{userPw}
 	</select>
 	
+	<select id="findIdA" resultMap="idList">
+		select userId from users where userName = #{userName} and birthDay = #{birthDay}	
+	</select>
+	
+	<resultMap type="UserVO" id="idList">
+		<result property="userId" column="USERID"/>
+	</resultMap>
+	
 	<select id="idCheck" resultType="int">
 		select count(*) from users where userId = #{userId}
 	</select>

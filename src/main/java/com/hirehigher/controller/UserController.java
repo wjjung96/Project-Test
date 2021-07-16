@@ -1,5 +1,6 @@
 package com.hirehigher.controller;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
@@ -59,6 +60,21 @@ public class UserController {
 		}
 		
 		return mv; //LoginSuccessHandler로 반환
+	}
+	
+	//생년월일로 아이디찾기
+	@ResponseBody
+	@PostMapping(value="/findIdA", produces="application/json")
+	public ArrayList<UserVO> findIdA(@RequestBody UserVO VO) {
+		
+		String userName = VO.getUserName();
+		String birthDay = VO.getBirthDay();
+		
+		System.out.println(userName + ", " + birthDay);
+		
+		ArrayList<UserVO> idList = userService.findIdA(userName ,birthDay );
+		
+		return idList;
 	}
 	
 	//회원가입화면

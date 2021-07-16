@@ -1,5 +1,7 @@
 package com.hirehigher.user.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,14 @@ public class UserServiceImpl implements UserService {
 	public UserVO login(UserVO vo) {
 		
 		return userMapper.login(vo);
+	}
+	
+	@Override
+	public ArrayList<UserVO> findIdA(String userName, String birthDay) {
+		
+		System.out.println("서비스영역에서 실행됨:"+ userName + ", " + birthDay);
+		
+		return userMapper.findIdA(userName, birthDay);
 	}
 
 
@@ -54,5 +64,8 @@ public class UserServiceImpl implements UserService {
 		
 		return userMapper.getUserInfo(userId);
 	}
+
+
+	
 
 }

@@ -54,7 +54,7 @@
 	
 	function findId(){
 		event.preventDefault();
-		window.open("../resources/find/findId.jsp","findId","width=750,height=500,left=700,top=180,location=no,scrollbars=no");
+		window.open("../resources/find/findId.jsp","findId","width=750,height=500,left=550,top=180,location=no,scrollbars=no");
 	}
 	
 	
