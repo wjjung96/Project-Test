@@ -3,12 +3,14 @@ package com.hirehigher.controller;
 import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -166,7 +168,15 @@ public class UserController {
 	
 	//마이페이지
 	@RequestMapping("/mypage")
-	public void mypage() {
+	public void mypage(HttpSession session, Model model) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO");//userVO는 LoginSuccessHandler에서 만들어 집니다.
+		
+		String userId = userVO.getUserId();
+		
+		UserVO userInfo = userService.getUserInfo(userId);
+		
+		model.addAttribute("userInfo", userInfo);
 		
 	}
 	
@@ -175,6 +185,16 @@ public class UserController {
 	public void mypageModify() {
 		
 	}
+	
+	//접근실패 처리 (로그인을 하지않고 비정상적인 접근을 한 경우)
+	@RequestMapping("/access_fail")
+	public String accessFail(RedirectAttributes RA) {
+		
+		RA.addFlashAttribute("msg", "비정상적인 접근입니다. 로그인 이후 다시 시도해주세요");
+		
+		return "redirect:/user/userLogin";
+	}
+	
 	
 	
 	

@@ -10,7 +10,7 @@
 				<div class="loginTitle">
 					<h2>로그인</h2>
 				</div>
-
+	
 				<form action="loginForm" method="post">
 
 					<div class="form-group">
@@ -24,8 +24,8 @@
 					</div>
 
 					<ul class="userLogin-find">
-						<li><a href="#"><small>비밀번호찾기</small></a></li>
-						<li><a href="#" style="margin: 0 5px;"><small>아이디찾기</small></a></li>
+						<li><a href="#" onclick=""><small>비밀번호찾기</small></a></li>
+						<li><a href="#" onclick="findId()" style="margin: 0 5px;"><small>아이디찾기</small></a></li>
 					</ul>
 
 					<div class="form-group">
@@ -51,4 +51,11 @@
 	if (msg != '') {
 		alert(msg);
 	}
+	
+	function findId(){
+		event.preventDefault();
+		window.open("../resources/find/findId.jsp","findId","width=750,height=500,left=700,top=180,location=no,scrollbars=no");
+	}
+	
+	
 </script>

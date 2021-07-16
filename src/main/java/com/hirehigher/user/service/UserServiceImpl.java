@@ -48,4 +48,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.join(vo);
 	}
 
+
+	@Override
+	public UserVO getUserInfo(String userId) {
+		
+		return userMapper.getUserInfo(userId);
+	}
+
 }
