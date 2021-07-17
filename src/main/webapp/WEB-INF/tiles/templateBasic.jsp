@@ -28,9 +28,17 @@
   	<script src="${ pageContext.request.contextPath }/resources/js/main-chart.js"/></script>
   	
     <!-- 스타일시트(개인 css)는 아래에 추가해주세요 (src/webapp/resources/css에 필요한 css파일 추가하고 이곳에 선언해줍니다.)-->
-  	<!-- 기본선언 css,사이드바 -->
-  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css" rel="stylesheet">
+    <!-- 기본선언 css,사이드바 -->
+  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?222" rel="stylesheet">
   	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?2" rel="stylesheet">
+  	<!-- 홈버튼 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<!-- 메뉴 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- 준명 -->
     <link href="${pageContext.request.contextPath }/resources/css/workBoard.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creator.css" rel="stylesheet">

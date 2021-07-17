@@ -7,7 +7,7 @@ grant resource, connect to teamproject04;
 alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
 
 
-========================================= 유  저 테 이 블 =============================================
+========================================= USER TABLE =============================================
 create table users(
     userId varchar2(50) primary key,
     userPw varchar2(50) not null,
@@ -22,3 +22,16 @@ create table users(
     regdate date default sysdate,
     userType number(1) default 0
 ); 
+
+========================================= JOBBOARD TABLE =============================================
+CREATE TABLE JOBBOARD(
+    bno NUMBER(10) PRIMARY KEY, --글 번호
+    viewCount NUMBER(10), --조회수
+    userId varchar2(50), --아이디
+    userName varchar2(50) NOT NULL, --작성자
+    companyName varchar2(50) NOT NULL, --회사 이름
+    title varchar2(200) NOT NULL, --제목
+    content varchar2(1000) NOT NULL, --내용
+    regDate date default sysdate, --작성일
+    updateDate date default sysdate --수정일
+);

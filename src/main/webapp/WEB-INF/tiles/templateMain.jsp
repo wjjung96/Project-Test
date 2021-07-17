@@ -19,7 +19,16 @@
 	<script type="module" src="${ pageContext.request.contextPath }/resources/js/main.js"/></script>
 	
 	<!-- 메인페이지 스타일시트 -->
-	<link href="${pageContext.request.contextPath }/resources/css/main.css?1" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/main.css?11" rel="stylesheet">
+	<!-- 홈버튼 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<!-- 메뉴 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
 <body>
 	<!-- 헤더영역 -->
 	<tiles:insertAttribute name="header"/>

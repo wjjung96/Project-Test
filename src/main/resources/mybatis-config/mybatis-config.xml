@@ -7,5 +7,7 @@
 	<configuration>
 		<typeAliases>
 			<typeAlias type="com.hirehigher.command.UserVO" alias="UserVO"/>
+			<typeAlias type="com.hirehigher.command.JobBoardVO" alias="JobBoardVO"/>
+			<typeAlias type="com.hirehigher.util.VisitorCounterVO" alias="VisitorCounterVO"/>
 		</typeAliases>
 	</configuration>

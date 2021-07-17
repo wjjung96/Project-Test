@@ -10,7 +10,7 @@
 		<div class="home-container">
 			<!--[3-1]-->
 			<div class="home">
-				<a href="#">HireHigher</a>
+				<a href="${pageContext.request.contextPath }">HireHigher</a>
 			</div>
 			<div class="main-search-bar-container">
 				<input type="text" placeholder="" class="main-search-bar"> <a
@@ -23,11 +23,11 @@
 			<!--[3-2]-->
 			<li><a href="${pageContext.request.contextPath }/jobBoard/jobList">RECRUITMENT <img src="${ pageContext.request.contextPath }/resources/img/recruitment-logo.png">
             </a></li>
-			<li><a href="#">MARKET <img src="${ pageContext.request.contextPath }/resources/img/cart-logo.png">
+			<li><a href="${pageContext.request.contextPath }/workBoard/workBoard">MARKET <img src="${ pageContext.request.contextPath }/resources/img/cart-logo.png">
 			</a></li>
-			<li><a href="#">SIGN-IN <img src="${ pageContext.request.contextPath }/resources/img/signin-logo.png">
+			<li><a href="${pageContext.request.contextPath }/user/userJoin">SIGN-IN <img src="${ pageContext.request.contextPath }/resources/img/signin-logo.png">
 			</a></li>
-			<li><a href="#">SIGN-UP <img src="${ pageContext.request.contextPath }/resources/img/signup-logo.png">
+			<li><a href="${pageContext.request.contextPath }/user/userLogin">SIGN-UP <img src="${ pageContext.request.contextPath }/resources/img/signup-logo.png">
 			</a></li>
 		</ul>
 

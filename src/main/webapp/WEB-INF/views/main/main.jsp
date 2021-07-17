@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <!-- main -->
 
 <section class="main-section">
@@ -19,25 +20,31 @@
 		<div class="main-text2">
 			<div class="main-stats">
 				<div class="main-stats-container">
-					<h3>
+					<div class="main-stats-container-inner1">
 						TOTAL VISITS
 						<!--data 동적처리-->
-						<h2>data1</h2>
-					</h3>
+						<div class="main-stats-container-inner2">
+							${sessionScope.totalVisits}
+						</div>
+					</div>
 				</div>
 				<div class="main-stats-container">
-					<h3>
+					<div class="main-stats-container-inner1">
 						TOTAL POSTS
 						<!--data 동적처리-->
-						<h2>data2</h2>
-					</h3>
+						<div class="main-stats-container-inner2">
+							${sessionScope.totalPosts}
+						</div>
+					</div>
 				</div>
 				<div class="main-stats-container">
-					<h3>
-						ACTIVE USERS
+					<div class="main-stats-container-inner1">
+						TOTAL USERS
 						<!--data 동적처리-->
-						<h2>data3</h2>
-					</h3>
+						<div class="main-stats-container-inner2">
+							${sessionScope.totalUsers}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
